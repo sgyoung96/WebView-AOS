@@ -3,6 +3,7 @@ package com.example.clienttowebview
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -12,18 +13,22 @@ import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
-    var webview: WebView? = null
-    var toast: Toast? = null
+    companion object {
+        private const val TAG = "MainActivity"
+    }
+
+    lateinit var webview: WebView
+    lateinit var toast: Toast
     var isToastShowing: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val webview: WebView = WebView(this)
+        webview = WebView(this)
         webview.webChromeClient = MyWebChromeClient()
         webview.webViewClient = MyWebViewClient()
 
-        val webSettings: WebSettings = webview.settings
+        val webSettings = webview.settings
         webSettings.javaScriptEnabled = true
 
         setContentView(webview)
@@ -34,17 +39,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (!webview!!.canGoBack()) {
+        if (!webview.canGoBack()) {
             if (isToastShowing) {
                 super.onBackPressed()
             } else {
                 toast = Toast.makeText(this, "한 번 더 클릭 시 앱이 종료됩니다.", Toast.LENGTH_LONG)
-                toast!!.show()
+                toast.show()
                 isToastShowing = false
-                Handler().postDelayed({ -> isToastShowing = false}, 2000)
+                Handler(Looper.getMainLooper()).postDelayed({ isToastShowing = false}, 2000)
             }
         } else {
-            webview!!.goBack()
+            webview.goBack()
         }
     }
 }
