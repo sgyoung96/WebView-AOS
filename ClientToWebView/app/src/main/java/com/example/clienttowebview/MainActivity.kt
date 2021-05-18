@@ -19,9 +19,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val webview: WebView = findViewById(R.id.wv_container)
-        webview.webChromeClient = WebChromeClient()
-        webview.webViewClient = WebViewClient()
+        val webview: WebView = WebView(this)
+        webview.webChromeClient = MyWebChromeClient()
+        webview.webViewClient = MyWebViewClient()
 
         val webSettings: WebSettings = webview.settings
         webSettings.javaScriptEnabled = true
