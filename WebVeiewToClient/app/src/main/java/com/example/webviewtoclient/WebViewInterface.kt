@@ -6,11 +6,11 @@ import android.webkit.WebView
 
 class WebViewInterface constructor(val context: Context, val webView: WebView) {
 
-    val main = MainActivity()
-
-    @JavascriptInterface
-    fun getDoubleNum(result: Int) {
-        main.tvText.text = result as String
-    }
+//    val main = MainActivity()
+//
+//    @JavascriptInterface
+//    fun getDoubleNum(result: Int) {
+//        main.tvText.text = result as String
+//    }
 
 }
