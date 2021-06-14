@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>웹브릿지 테스트(Web To App)</title>
+</head>
+
+<body>
+
+<h1>버튼을 누르면 토스트가 띄워져요</h1>
+
+<button type="button" onclick="showAndroidToast('테스트 입니다.');">토스트 띄우기</button>
+
+</body>
+
+<script>
+    function showAndroidToast(string) {
+        Interface.showToast(string);
+    }
+</script>
+
+</html>
